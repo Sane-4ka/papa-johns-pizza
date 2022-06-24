@@ -1,0 +1,44 @@
+.filter {
+    display: flex;
+    justify-content: space-between;
+    max-width: 890px;
+    gap: 30px;
+
+    &-block-buttons {
+        display: flex;
+        gap: 10px;
+    }
+    &-block-button {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 36px;
+        padding-left: 15px;
+        padding-right: 15px;
+        background-color: hsla(0,0%,100%,0);
+        border: 1.4px solid #e6e2e1;
+        border-radius: 100px;
+        color: #a69895;
+        line-height: 1.2;
+        cursor: pointer;
+        -webkit-transition: color .35s,border-color .35s;
+        transition: color .35s,border-color .35s;
+        &.active {
+            border: 1.4px solid rgb(163, 124, 100);;
+            color: rgb(163, 124, 100);;
+            font-weight: 600;
+        }
+        @media (any-hover: hover){
+            &:hover{
+                border: 1.4px solid #b1b1b1;
+            }
+        }
+    }
+    &-block-icon {
+
+    }
+    &-icon {
+
+    }
+}

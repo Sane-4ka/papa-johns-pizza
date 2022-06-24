@@ -1,0 +1,50 @@
+.navbar_menu {
+    display: flex;
+    justify-content: space-around;
+    padding: 15px;
+
+    &-link {
+        font-weight: 600;
+        color: rgb(48, 37, 30);
+        text-align: center;
+        top: 0;
+        position: relative;
+        transition: all 0.3s ease 0s;
+        @media (any-hover: hover){
+            &:hover{
+                top: -6px;
+            }
+        }
+        img {
+            height: 50px;
+            width: 48px;
+        }
+        &.active {
+            top: -3px;
+            color: rgb(163, 124, 100);
+        }
+    }
+    &-item {
+        display: flex;
+        flex-direction: row;
+        gap: 25px;
+    }
+}
+.navbar {
+
+    &-ingredients {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 10px;
+        img {
+            width: 80px;
+            height: 80px;
+        }
+        span {
+            font-weight: 700;
+            color: rgb(125, 93, 74);
+            text-align: left;
+        }
+    }
+}
