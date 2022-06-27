@@ -20,24 +20,24 @@ export const goodsFetchingError = () => {
 
 // **--------------FILTERS-----------------------------**
 
-export const pizzaFiltersFetching = () => {
-    return {
-        type: 'PIZZA_FILTERS_FETCHING'
-    }
-}
+// export const pizzaFiltersFetching = () => {
+//     return {
+//         type: 'PIZZA_FILTERS_FETCHING'
+//     }
+// }
 
-export const pizzaFiltersFetched = (filters) => {
-    return {
-        type: 'PIZZA_FILTERS_FETCHED',
-        payload: filters
-    }
-}
+// export const pizzaFiltersFetched = (filters) => {
+//     return {
+//         type: 'PIZZA_FILTERS_FETCHED',
+//         payload: filters
+//     }
+// }
 
-export const pizzaFiltersFetchingError = () => {
-    return {
-        type: 'PIZZA_FILTERS_FETCHING_ERROR'
-    }
-}
+// export const pizzaFiltersFetchingError = () => {
+//     return {
+//         type: 'PIZZA_FILTERS_FETCHING_ERROR'
+//     }
+// }
 
 export const activePizzaFilterChanged = (filter) => {
     return {

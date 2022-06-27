@@ -2,24 +2,26 @@ import React from 'react'
 
 import { useEffect, useState, useMemo } from 'react'
 import { useHttp } from '../../hooks/useHttp'
+import { goodsFetching, goodsFetchingError, goodsFetched } from '../../redux/actions'
+import { useDispatch, useSelector } from 'react-redux'
 
 import PizzaList from './pizza/PizzaList'
 import GoodsCart from './basket/GoodsCart'
-import Filter from './filter/Filter'
+import PizzaFilter from './filter/PizzaFilter'
 import Navbar from './navbar/Navbar'
 import './main.scss'
 
 const Main = () => {
-    const [goodsData, setGoodsData] = useState('');
+    // const [reload, setReload] = useState(false);
     const {request} = useHttp();
+    const dispatch = useDispatch();
 
-    // useEffect(() => {
-    //     request('https://api.papajohns.by/catalog/goods?lang=ru&city_id=1')  
-    //         .then(onPizzaListLoaded)
-    // }, []);
-    // const onPizzaListLoaded = async(newGoodsData) => {
-    //     await setGoodsData(newGoodsData);
-    // }
+    useEffect(() => {
+        dispatch(goodsFetching)
+        request('https://api.papajohns.by/catalog/goods?lang=ru&city_id=1')
+            .then(data => dispatch(goodsFetched(data)))
+            .catch(dispatch(goodsFetchingError))
+    }, []);
 
   return (
     <div className='main'>
@@ -28,11 +30,11 @@ const Main = () => {
         </div>
         <div className="filter-block">
             <h2 className="goods-title">Pizza</h2>
-            <Filter/>    
+            <PizzaFilter/>    
         </div>
         <div className="main-container">
             <div className="main-goods">
-                <PizzaList goodsData={goodsData}/>
+                <PizzaList/>
             </div>
             <GoodsCart/>
         </div>
