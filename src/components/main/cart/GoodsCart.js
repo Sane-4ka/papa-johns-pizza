@@ -28,7 +28,7 @@ const GoodsCart = () => {
                 </>
             )
         } else {
-            console.log(cardData)
+            // console.log(cardData)
             const items = cardData.map((item, i)=> {
                 return (
                     <li className="cart-item" key={`${i}_key`}>

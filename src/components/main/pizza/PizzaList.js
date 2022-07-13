@@ -2,32 +2,23 @@ import React from 'react'
 import { useEffect, useState, useMemo } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-
 import PizzaItem from './PizzaItem'
 
 const PizzaList = () => {
-    const [reload, setReload] = useState(false);
     const [filteredGoods, setFilteredGoods] = useState([]);
     const {goods, goodsLoadingStatus} = useSelector(state => state.goods)
     const {activePizzaFilter} = useSelector(state => state.pizzaFilters)
-
-    useEffect(() => {
-        // console.log(goods)
-        if (goods.length === 0) {
-            return
-        } else {
-            filterIt()  
-        }
-        // console.log(filteredGoods, goodsLoadingStatus)
-     }, [activePizzaFilter, goods]);
-
-    if (goodsLoadingStatus === 'loading') {
-        return <h2>LOADING</h2>
-    } else if (goodsLoadingStatus === 'error') {
-        return <h2>LOADING FAILED</h2>
-    }
     
+    // const filterIt = () => {
+    //     activePizzaFilter !== 'all' && [] ?
+    //     setFilteredGoods(goods[0].goods.filter((item, i) => {
+    //         return item.types.some(type => {
+    //             return type.code === activePizzaFilter
+    //         })
+    //     })) : setFilteredGoods(goods[0].goods)
+    // }
     const filterIt = () => {
+        console.log(`filtered`)
         activePizzaFilter !== 'all' && [] ?
         setFilteredGoods(goods[0].goods.filter((item, i) => {
             return item.types.some(type => {
@@ -36,18 +27,36 @@ const PizzaList = () => {
         })) : setFilteredGoods(goods[0].goods)
     }
 
+    useEffect(() => {
+        goods.length !== 0 ? filterIt() : console.log(`Waiting for the loading the goods`)
+    }, [goods, activePizzaFilter]);
+
+    // useMemo (() => {
+    //     console.log(activePizzaFilter, filteredGoods, goodsLoadingStatus, 'Working use memo')
+    //     if (goods.length === 0) {
+    //         console.log('length 0')
+    //         // return <h2>LOADINGggggg</h2>
+    //     } else {
+    //         filterIt()  
+    //     }
+    //  }, [activePizzaFilter, goods]);
+    // useEffect(() => {
+        
+    // }, [activePizzaFilter, goods]);
+
+    if (goodsLoadingStatus === 'loading') {
+        return <h2>GOODS LOADING</h2>
+    } else if (goodsLoadingStatus === 'error') {
+        return (
+            <>
+                <h2>Smth went wrong</h2>
+                <button onClick={() => filterIt()}>reload</button>
+            </>
+        )
+    }
+
     function renderItem(data = goods) {
-        if (goods === []) {
-            return
-        }
-        if (data.length === 0) {
-            return (
-                <>
-                    <h3>Goods not found</h3>
-                    <button onClick={() => setReload(!reload)}>reload</button>
-                </>
-                )
-        }
+
         const items = data.map((item, i) => {
             return <PizzaItem itemData={item} key={`${item.name}_X`}/>
         })

@@ -1,5 +1,6 @@
 const initialState = {
     goods: [],
+    errorMsg: '',
     goodsLoadingStatus: 'idle'
 }
 
@@ -19,6 +20,7 @@ const goods = (state = initialState, action) => {
         case 'GOODS_FETCHING_ERROR':
             return {
                 ...state,
+                errorMsg: action.payload,
                 goodsLoadingStatus: 'error'
             }
         default: return state
