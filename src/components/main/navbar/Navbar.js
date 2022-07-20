@@ -15,34 +15,35 @@ const Navbar = () => {
     <div className="main-navbar_menu navbar_menu">
         <ul className="navbar_menu-food">
             <li className="navbar_menu-item">
-                <a href="#" className="navbar_menu-link active">
+                {/* <a href="#" onClick={() => console.log(document.getElementById('Закуски'))} className="navbar_menu-link active"> */}
+                <div onClick={() => document.getElementById('Закуски').scrollIntoView({block: "center", behavior: "smooth"})} className="navbar_menu-link active">
                     <img src={pizza} alt="" />
                     <span>Pizza</span>
-                </a>
-                <a href="#" className="navbar_menu-link">
+                </div>
+                <div href="#" className="navbar_menu-link">
                     <img src={bowl} alt="" />
                     <span>Hot</span>
-                </a>
-                <a href="#" className="navbar_menu-link">
+                </div>
+                <div href="#" className="navbar_menu-link">
                     <img src={snack} alt="" />
                     <span>Snacks</span>
-                </a>
-                <a href="#" className="navbar_menu-link">
+                </div>
+                <div href="#" className="navbar_menu-link">
                     <img src={drink} alt="" />
                     <span>Drinks</span>
-                </a>
-                <a href="#" className="navbar_menu-link">
+                </div>
+                <div href="#" className="navbar_menu-link">
                     <img src={sauce} alt="" />
                     <span>Sauces</span>
-                </a>
-                <a href="#" className="navbar_menu-link">
+                </div>
+                <div href="#" className="navbar_menu-link">
                     <img src={dessert} alt="" />
                     <span>Desserts</span>
-                </a>
-                <a href="#" className="navbar_menu-link">
+                </div>
+                <div href="#" className="navbar_menu-link">
                     <img src={combo} alt="" />
                     <span>Combo</span>
-                </a>
+                </div>
             </li>
         </ul>
         <div className="navbar-ingredients">

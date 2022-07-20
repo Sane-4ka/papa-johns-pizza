@@ -45,3 +45,18 @@ export const activePizzaFilterChanged = (filter) => {
         payload: filter
     }
 }
+
+// **--------------CART-----------------------------**
+
+export const addItemToCard = (productData) => {
+    return {
+        type: 'ADD_ITEM_TO_CARD',
+        payload: productData
+    }
+}
+export const deleteItemFromCard = (id) => {
+    return {
+        type: 'DELETE_ITEM_FROM_CARD',
+        payload: id
+    }
+}

@@ -7,10 +7,10 @@ import { goodsFetching, goodsFetchingError, goodsFetched } from '../../redux/act
 import PizzaList from './pizza/PizzaList'
 import GoodsCart from './cart/GoodsCart'
 import GoodsList from './goods/GoodsList'
-// import PizzaFilter from './filter/PizzaFilter'
+import PizzaFilter from './filter/PizzaFilter'
 import Navbar from './navbar/Navbar'
 import './main.scss'
-const PizzaFilter = React.lazy(() => import('./filter/PizzaFilter'));
+// const PizzaFilter = React.lazy(() => import('./filter/PizzaFilter'));
 
 const Main = () => {
     const {request} = useHttp();
@@ -23,13 +23,12 @@ const Main = () => {
             .then(console.log(`fetched`))
             .catch(e => dispatch(goodsFetchingError(e)))
     }, []);
-
-  return (
+   return (
     <div className='main'>
         <div className="main-block">
             <Navbar/>
         </div>
-        <GoodsCart/>
+        <GoodsCart dispatch={dispatch}/>
         {/* <Suspense fallback={<div>Загрузка...</div>}> */}
             <div className="filter-block">
                 <h2 className="goods-title">Pizza</h2>
@@ -38,8 +37,8 @@ const Main = () => {
         {/* </Suspense> */}
         <div className="main-container">
             <div className="main-goods">
-                <PizzaList/>
-                <GoodsList/>
+                <PizzaList dispatch={dispatch}/>
+                <GoodsList dispatch={dispatch}/>
             </div>
             {/* <GoodsCart/> */}
         </div>

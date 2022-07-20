@@ -13,6 +13,7 @@ const GoodsList = () => {
     
     function renderItem(data = goods) {
         if (goods.length > 0) {
+
             const goodsArr = [];
             for (let k = 1; k < 7; k++) {
                 goodsArr.push({name : data[k].name})
@@ -23,10 +24,10 @@ const GoodsList = () => {
                 goodsArr[k - 1].data = (items)
                 // console.log(goodsArr[k - 1])
             }    
-            return goodsArr.map(item => {
+            return goodsArr.map((item, i) => {
                 return (
-                    <div className='goods-block'>
-                        <h2>{item.name}</h2>
+                    <div className='goods-block' key={`${item.name}_${i}`}>
+                        <h2 id={item.name}>{item.name}</h2>
                         <div className="goods-container">
                         {
                             item.data.map(product => {

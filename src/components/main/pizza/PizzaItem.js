@@ -1,37 +1,94 @@
-import React from 'react'
-import {BsPlus} from 'react-icons/bs'
+import React, {useState, useEffect} from 'react'
+// import {BsPlus} from 'react-icons/bs'
+import { addItemToCard } from '../../../redux/actions';
 
-const PizzaItem = ({itemData}) => {
-    const {name, description, variations} = itemData
+const PizzaItem = ({dispatch, itemData}) => {
+    const [size, setSize] = useState([]);
+    const [currentType, setCurrentType] = useState('Традиционное')
+            // arr with size ids
+    const [currentId, setCurrentId] = useState(0)
+        // arr with variation ids
+    const [variationIds, setVariationIds] = useState([])
+    const {name, description, variations, id} = itemData
+
+    useEffect(() => {
+            setType()
+        }, []);
+
+    const setType = (value = currentType) => {
+        
+        setCurrentType(value)
+        onChangeSizeId()
+        setSize([])
+        setVariationIds([])
+        setCurrentId(0)
+        variations.forEach((item, i) => {
+            if (item.stuffed_crust === 'none' && item.dough === value) {
+                setSize(size => [...size, item.size.value])
+                setVariationIds(state => [...state, i])
+            }
+        })
+    }
+    const onChangeSizeId = (i = currentId) => {
+        setCurrentId(i)
+    }
+
+    const renderSizes = () => {
+        return (size.map((size, i) => {
+            // return !size ? <span>Данного вида нет в продаже</span> :
+            return <span key={`${name}_${i}`} onClick={() => setCurrentId(i)} className={i === currentId ? `filter-size-item active` : 'filter-size-item' }>{size}cm</span>
+        }))
+    }
+
+    const onAddToCart = (currentVariation) => {
+        dispatch(addItemToCard({currentVariation, id}))
+    }
+
+    const makeContent = () => {
+        let varId = variations[variationIds[currentId]]
+        return (
+        <div className="pizza-block">
+            <img src={varId? varId.image_list : null} alt="" className="pizza-image" />
+            <hr/>
+            <h3 className="pizza-title">{name}</h3>
+            <div className="pizza-description">{description}</div>
+            <div className="pizza-filter">
+                <div className="pizza-filter-size">
+                    <div className={currentType === 'Традиционное' ? `filter-size-item active` : 'filter-size-item'} 
+                        data-type='Традиционное' 
+                        onClick={(e) => setType(e.target.getAttribute('data-type'))}
+                        >Традиционное
+                    </div>
+                    <div className={currentType === 'Тонкое'? `filter-size-item active` : 'filter-size-item'} 
+                        data-type='Тонкое' 
+                        onClick={(e) => setType(e.target.getAttribute('data-type'))}
+                        >Тонкое
+                    </div>
+                </div>
+                <div className="pizza-filter-size">
+                    {renderSizes()}
+                </div>
+                {/* <div className="pizza-filter-board">
+                    <BsPlus style={{fontSize: '22px'}}/>
+                    <span>Crispy board 30cm</span>
+                    <p className="pizza-filter-board-price">4.5 BYN</p>
+                </div> */}
+            </div>
+            <div className="pizza-footer">
+                <button className="pizza-footer-btn" onClick={() => onAddToCart(varId)}>Add to basket</button>
+                <span className="pizza-footer-price">{varId? varId.price : null} BYN</span>
+            </div>
+        </div>
+        )
+    }
+
+    const elements = makeContent()
+    
    return (
-    <div className="pizza-block">
-        <img src={variations[0].image_list} alt="" className="pizza-image" />
-        <hr/>
-        <h3 className="pizza-title">{name}</h3>
-        <div className="pizza-description">{description}</div>
-        <div className="pizza-filter">
-            <div className="pizza-filter-size">
-                <span className="filter-size-item active">Traditional</span>
-                <span className="filter-size-item">Thin</span>
-            </div>
-            <div className="pizza-filter-size">
-                <span className="filter-size-item active">30cm</span>
-                <span className="filter-size-item">20cm</span>
-                <span className="filter-size-item">10cm</span>
-                <span className="filter-size-item">10cm</span>
-            </div>
-            <div className="pizza-filter-board">
-                <BsPlus style={{fontSize: '22px'}}/>
-                <span>Crispy board 30cm</span>
-                <p className="pizza-filter-board-price">4.5 BYN</p>
-            </div>
-        </div>
-        <div className="pizza-footer">
-            <button className="pizza-footer-btn">Add to basket</button>
-            <span className="pizza-footer-price">{variations[0].price} BYN</span>
-        </div>
-    </div>
-)
+        <React.Fragment>
+        {elements}
+        </React.Fragment>
+    )
 }
 
 export default PizzaItem
