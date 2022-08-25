@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react'
+import { useMemo } from 'react';
 // import {BsPlus} from 'react-icons/bs'
 import { addItemToCard } from '../../../redux/actions';
 
@@ -9,11 +10,11 @@ const PizzaItem = ({dispatch, itemData}) => {
     const [currentId, setCurrentId] = useState(0)
         // arr with variation ids
     const [variationIds, setVariationIds] = useState([])
-    const {name, description, variations, id} = itemData
+    const {name, description, variations, id} = useMemo(() => itemData, [itemData])
 
     useEffect(() => {
-            setType()
-        }, []);
+        setType()
+    }, []);
 
     const setType = (value = currentType) => {
         
@@ -41,14 +42,17 @@ const PizzaItem = ({dispatch, itemData}) => {
     }
 
     const onAddToCart = (currentVariation) => {
-        dispatch(addItemToCard({currentVariation, id}))
+        console.log({currentVariation, id})
+        dispatch(addItemToCard({currentVariation, id, name}))
     }
 
     const makeContent = () => {
         let varId = variations[variationIds[currentId]]
         return (
         <div className="pizza-block">
-            <img src={varId? varId.image_list : null} alt="" className="pizza-image" />
+            <div className="pizza-block-img">
+                <img src={varId? varId.image_list : null} alt="" className="pizza-image" />
+            </div>
             <hr/>
             <h3 className="pizza-title">{name}</h3>
             <div className="pizza-description">{description}</div>

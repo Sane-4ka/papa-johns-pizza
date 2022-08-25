@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 
 import pizza from '../../../assets/img/pizza.svg'
 import bowl from '../../../assets/img/hot-soup.png'
@@ -11,39 +11,63 @@ import combo from '../../../assets/img/delivery.png'
 import './navbar.scss'
 
 const Navbar = () => {
+    const [active, setActive] = useState('Pizza')
+    const data = [
+        {
+            name: 'Pizza',
+            imgSrc: pizza,
+            id: 'pizzas'
+        },
+        {
+            name: 'Hot',
+            imgSrc: bowl,
+            id: 'Горячее'
+        },
+        {
+            name: 'Snacks',
+            imgSrc: snack,
+            id: 'Закуски'
+        },
+        {
+            name: 'Drinks',
+            imgSrc: drink,
+            id: 'Напитки'
+        },
+        {
+            name: 'Sauces',
+            imgSrc: sauce,
+            id: 'Соусы'
+        },
+        {
+            name: 'Desserts',
+            imgSrc: dessert,
+            id: 'Десерты'
+        },
+        {
+            name: 'Combo',
+            imgSrc: combo,
+            id: 'Комбо'
+        },
+    ]
+
+    const handleActive = (item) => {
+        setActive(item.name)
+        document.getElementById(item.id).scrollIntoView({block: "center", behavior: "smooth"})
+    }
+
+    const elements = data.map((item, i) => {
+        return (
+            <div key={`${item.name}-${i}`} onClick={() => handleActive(item)} className={item.name === active? 'navbar_menu-link active' : 'navbar_menu-link'}>
+                <img src={item.imgSrc} alt="" />
+                <span>{item.name}</span>
+            </div>
+        )
+    })
   return (
     <div className="main-navbar_menu navbar_menu">
         <ul className="navbar_menu-food">
             <li className="navbar_menu-item">
-                {/* <a href="#" onClick={() => console.log(document.getElementById('Закуски'))} className="navbar_menu-link active"> */}
-                <div onClick={() => document.getElementById('Закуски').scrollIntoView({block: "center", behavior: "smooth"})} className="navbar_menu-link active">
-                    <img src={pizza} alt="" />
-                    <span>Pizza</span>
-                </div>
-                <div href="#" className="navbar_menu-link">
-                    <img src={bowl} alt="" />
-                    <span>Hot</span>
-                </div>
-                <div href="#" className="navbar_menu-link">
-                    <img src={snack} alt="" />
-                    <span>Snacks</span>
-                </div>
-                <div href="#" className="navbar_menu-link">
-                    <img src={drink} alt="" />
-                    <span>Drinks</span>
-                </div>
-                <div href="#" className="navbar_menu-link">
-                    <img src={sauce} alt="" />
-                    <span>Sauces</span>
-                </div>
-                <div href="#" className="navbar_menu-link">
-                    <img src={dessert} alt="" />
-                    <span>Desserts</span>
-                </div>
-                <div href="#" className="navbar_menu-link">
-                    <img src={combo} alt="" />
-                    <span>Combo</span>
-                </div>
+                {elements}
             </li>
         </ul>
         <div className="navbar-ingredients">

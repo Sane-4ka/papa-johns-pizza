@@ -1,8 +1,10 @@
-import React, {Suspense, useEffect} from 'react'
+import React, {useEffect} from 'react'
 
 import { useHttp } from '../../hooks/useHttp'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { goodsFetching, goodsFetchingError, goodsFetched } from '../../redux/actions'
+
+import Slider from './Slider/Slider';
 
 import PizzaList from './pizza/PizzaList'
 import GoodsCart from './cart/GoodsCart'
@@ -23,7 +25,10 @@ const Main = () => {
             .then(console.log(`fetched`))
             .catch(e => dispatch(goodsFetchingError(e)))
     }, []);
+
    return (
+    <>
+    <Slider/>
     <div className='main'>
         <div className="main-block">
             <Navbar/>
@@ -31,7 +36,7 @@ const Main = () => {
         <GoodsCart dispatch={dispatch}/>
         {/* <Suspense fallback={<div>Загрузка...</div>}> */}
             <div className="filter-block">
-                <h2 className="goods-title">Pizza</h2>
+                <h2 className="goods-title" id='pizzas'>Пиццы</h2>
                 <PizzaFilter/>    
             </div>
         {/* </Suspense> */}
@@ -43,6 +48,7 @@ const Main = () => {
             {/* <GoodsCart/> */}
         </div>
     </div>
+    </>
   )
 }
 

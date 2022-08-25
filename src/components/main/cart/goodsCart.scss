@@ -1,11 +1,12 @@
 
 .cart {
     flex: 1 0 200px;
+    overflow-y: auto;
     display: flex;
     background-color: #fff;
     position: sticky;
     top: 5px;
-    // height: 330px;
+    max-height: 95vh;
     border-radius: 25px;
     margin-left: 25px;
     flex-direction: column;
@@ -13,19 +14,31 @@
     // ----------------->>>>>>>>>>>>>??? 10px
     padding: 10px;
     margin-top: 125px;
+    box-shadow: 5px 5px 5px 0px rgba(34, 60, 80, 0.2);
+    &::-webkit-scrollbar {
+        display: none;
+    }
     &-title {
         padding: 10px;
         display: flex;
         justify-content: center;
         text-transform: uppercase;
         font-weight: 800;
-        color:rgb(144, 116, 82)
+        color:rgb(144, 116, 82);
+        z-index: 5000;
+        height: auto;
+        width: 100%;
+        position: sticky;
+        top: -12px;
+        background-color: white;
+        // box-shadow: 0px 1px 20px 0px rgba(0, 0, 0, 0.17);
     }
     &-block {
         max-width: 200px;
         img {
             padding: 2px 10px 0px 0;
         }
+        position: relative;
     }
     &-description {
         display: flex;
@@ -64,6 +77,7 @@
         }
         &-title {
             font-size: 13px;
+            line-height: 1.1;
         }
         &-subtitle {
             font-size: 10px;
@@ -75,12 +89,24 @@
             align-items:center;
         }
     }
+    &-total{
+        position: sticky;
+        bottom: 0;
+        padding: 5px;
+        width: auto;
+        height: auto;
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0px -2px 5px -3px rgba(34, 60, 80, 0.42);
+    }
     &-order-btn {
         background-color:rgb(95, 165, 142);
         color: #fff;
         padding: 5px;
         border-radius: 10px;
         text-align: center;
+        position: relative;
+        z-index: 5000;
     }
 }
 .count {

@@ -6,7 +6,7 @@ import CartItem from './CartItem/CartItem'
 import './goodsCart.scss'
 
 const GoodsCart = ({dispatch}) => {
-    const {productData} = useSelector(state => state.cart)
+    const {productData, totalPrice} = useSelector(state => state.cart)
     const render = () => {
         if (Object.keys(productData).length === 0) {
             return (
@@ -18,7 +18,6 @@ const GoodsCart = ({dispatch}) => {
                 </>
             )
         } else {
-            // console.log(productData)
             const itemsData = Object.values(productData)
             const items = itemsData.map((item, i)=> {
                 return (
@@ -29,10 +28,9 @@ const GoodsCart = ({dispatch}) => {
                 <ul className="cart-items">
                     {items}
                     <div className="cart-total">
-            <div className="total-count">`Total count: ${'cc'}`</div>
-            <div className="total-price">`Total price: ${'cc'}`</div>    
-        </div>
-        <div className="cart-order-btn">Place an order</div>
+                        <div className="total-price">Total price: {totalPrice}</div>
+                        <div className="cart-order-btn">Place an order</div>
+                    </div>
                 </ul>
             )
         }
@@ -44,11 +42,6 @@ const GoodsCart = ({dispatch}) => {
         <div className="cart-block">
             {render()}
         </div>
-        {/* <ul className="cart-items">
-            <li className="cart-item">Drinks</li>
-            <li className="cart-item">Sauces</li>
-            <li className="cart-item">Pizza</li>
-        </ul> */}
     </div>
   )
 }

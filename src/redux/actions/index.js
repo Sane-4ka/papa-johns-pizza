@@ -49,6 +49,7 @@ export const activePizzaFilterChanged = (filter) => {
 // **--------------CART-----------------------------**
 
 export const addItemToCard = (productData) => {
+    console.log(productData)
     return {
         type: 'ADD_ITEM_TO_CARD',
         payload: productData

@@ -1,10 +1,10 @@
 import React from 'react'
-import { useEffect, useState, useMemo } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useEffect} from 'react'
+import {useSelector } from 'react-redux'
 
 import GoodsItem from './GoodsItem'
 
-const GoodsList = () => {
+const GoodsList = ({dispatch}) => {
     const {goods} = useSelector(state => state.goods)
 
     useEffect(() => {
@@ -19,7 +19,7 @@ const GoodsList = () => {
                 goodsArr.push({name : data[k].name})
                 const items = data[k].goods.map((item, i) => {
                     
-                    return <GoodsItem itemData={item} key={`${item.name}_X`}/>
+                    return <GoodsItem dispatch={dispatch} itemData={item} key={`${item.name}_X`}/>
                 })
                 goodsArr[k - 1].data = (items)
                 // console.log(goodsArr[k - 1])

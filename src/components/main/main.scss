@@ -37,6 +37,10 @@
         justify-content: space-between;
         // align-items: flex-start;
         text-align: left;
+        &-img{
+            height: 250px;
+            width: auto;
+        }
         img {
             border-radius: 25px;
         }
@@ -135,8 +139,9 @@
     justify-content: center;
     flex: 1 1 100%;
     cursor: pointer;
+    transition: all 0.3s ease 0s;
     &.active {
-        border: 2px solid #009471;
+        // border: 2px solid #009471;
         background: rgb(234, 254, 255);
     }
 }

@@ -1,10 +1,15 @@
 import React from 'react';
+import {Route, Routes} from 'react-router-dom'
 
 import Header from './components/header/header';
-import Main from './components/main/Main';
-import Slider from './components/header/Slider/Slider';
+
+import Home from './pages/Home';
+import Sale from "./pages/Sale";
+import Contacts from './pages/Contacts'
+import PapaBonus from './pages/PapaBonus'
+import Footer from './components/footer/Footer'
+
 import './App.css';
-import GoodsCart from './components/main/cart/GoodsCart';
 
 function App() {
 
@@ -12,9 +17,13 @@ function App() {
     <div className="App">
         <div className="app-container">
             <Header/>
-            <Slider/>
-            {/* <GoodsCart/> */}
-            <Main/>    
+                <Routes>
+                    <Route path="/" element={<Home />}/>
+                    <Route path="/sale" element={<Sale />} />
+                    <Route path="/contacts" element={<Contacts />} />
+                    <Route path="/papa-bonus" element={<PapaBonus />} />
+                </Routes>
+            <Footer/>
         </div>
     </div>
   );

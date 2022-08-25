@@ -1,7 +1,8 @@
 import React from 'react'
-import { useEffect, useState, useMemo } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux'
 
+import PizzaSkeleton from '../../Skeleton/PizzaSkeleton'
 import PizzaItem from './PizzaItem'
 
 const PizzaList = ({dispatch}) => {
@@ -24,7 +25,19 @@ const PizzaList = ({dispatch}) => {
     }, [goods, activePizzaFilter]);
 
     if (goodsLoadingStatus === 'loading') {
-        return <h2>GOODS LOADING</h2>
+        return (
+            <div className="pizza">
+                <PizzaSkeleton/>
+                <PizzaSkeleton/>
+                <PizzaSkeleton/>
+                <PizzaSkeleton/>
+                <PizzaSkeleton/>
+                <PizzaSkeleton/>
+                <PizzaSkeleton/>
+                <PizzaSkeleton/>
+                <PizzaSkeleton/>
+            </div>
+            )
     } else if (goodsLoadingStatus === 'error') {
         return (
             <>
