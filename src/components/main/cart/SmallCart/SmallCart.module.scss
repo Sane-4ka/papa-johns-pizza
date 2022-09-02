@@ -1,0 +1,21 @@
+.wrapper {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    padding: 11px 16px;
+    background: #b61111d5;
+    border-radius: 28px;
+    color: white;
+    display: flex;
+    gap: 5px;
+    font-size: 16px;
+    align-items: baseline;
+    span {
+        font-weight: 400;
+        font-size: 12px;
+    }
+}
+.icon {
+    padding-right: 10px;
+    font-size: 17px;
+}

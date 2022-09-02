@@ -1,0 +1,83 @@
+.item {
+    border-radius: 15px;
+    position: relative;
+    // background: rgba(187, 187, 187, 0.749);
+    background: white;
+    padding: 0 10px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    justify-content: space-between;
+    // max-width: 1000px;
+    // width: 100% !important;
+}
+.block {
+    display: flex;
+    align-items:center;
+    padding-right: 20px;
+    width: 330px;
+    img {
+        max-width: 120px;
+        height: auto;
+        border-radius: 15px;
+        padding: 5px;
+    }
+}
+.count {
+    display: flex;
+    align-items:center;
+    gap: 7px;
+
+    &_btn {
+        position: relative;
+        background: rgb(255, 255, 255);
+        color: #009471;        
+        border-radius: 50%;
+        width: 25px;
+        height: 25px;
+        font-size: 25px;
+        padding: 2px;
+        display: flex;
+        align-items:center;
+        justify-content: center;
+        align-content: center;
+        span {
+            position: relative;
+            top: -1.7px;
+        }
+    }
+}
+.subtitle {
+    font-size: 16px;
+    font-weight: 500;
+    padding-right: 30px;
+    span {
+        font-weight: 400;
+        font-size: 12px;
+    }
+}
+.text {
+    padding-left: 15px;
+}
+.subtitle_text {
+    color: rgba(26, 26, 26, 0.663);
+    font-size: 13px;
+    font-weight: 600;
+}
+.delete_btn {
+    position: relative;
+    width: 17px;
+    height: 17px;
+    border-radius: 50%;
+    background: rgb(216, 0, 0);
+    &::after {
+        content: "+";
+        position: relative;
+        color: white;
+        font-size: 20px;
+        top: -8px;
+        left: 3.5px;
+        display: inline-block;
+        transform: rotate(45deg);
+    }
+}

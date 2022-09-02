@@ -10,7 +10,7 @@ import "swiper/css/navigation";
 import './slider.scss'
 import SliderSkeleton from "../../Skeleton/SliderSkeleton";
 import { Autoplay, Navigation } from "swiper";
-import { useMemo } from "react";
+import { useCallback } from "react";
 
 export default function App() {
     const [bannersData, setBannersData] = useState([]);
@@ -20,17 +20,15 @@ export default function App() {
         request('https://api.papajohns.by/slider/list?lang=ru&city_id=1')
             .then(data => setBannersData(data))
             .catch(e => console.log(`error ${e}`))
-            .finally(console.log('finally'))
     }, []);
 
-    const renderBanners = useMemo(() => {
+    const renderBanners = useCallback(() => {
         return bannersData !== [] ? bannersData.map(banner => {
             return <SwiperSlide key={banner.title}><img src={banner.image_full_webp} alt="" /></SwiperSlide>
         }) : null
     }, [bannersData])
 
     if (bannersData.length === 0) {
-        console.log('banner')
         return <SliderSkeleton/>
     }else {
         return (
@@ -45,7 +43,7 @@ export default function App() {
                 grabCursor={true}
                 modules={[Autoplay, Navigation]}
                 className="mySwiper">
-                {renderBanners}
+                {renderBanners()}
             </Swiper>
         )
     }

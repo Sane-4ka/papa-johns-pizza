@@ -16,6 +16,9 @@
         justify-content: space-between;
     }
     &-container {
+        @media (max-width: 1170px) {
+            max-width: 895px;
+        }
         display: flex;
         flex-direction: row;
     }
@@ -27,7 +30,7 @@
     max-width: 1300px;
     flex-wrap: wrap;
     // justify-content: space-around;
-
+    
     &-block {
         width: 291px;
         background: white;
@@ -98,6 +101,12 @@
             text-align: center;
             text-transform: uppercase;
             cursor: pointer;
+            transition: all 0.3s ease 0s;
+            @media (any-hover: hover){
+                &:hover{
+                  background-color: #036d54;  
+                }
+            }
         }
         &-price {
 
@@ -127,22 +136,41 @@
     // top: -35px;
     // padding: 0 15px;
     padding-bottom: 40px;
+    @media (max-width: 1170px) {
+        display: flex;
+        justify-content: center;
+        padding-bottom: 40px;
+        flex-wrap: wrap;
+        flex-direction: column;
+        align-content: center;
+    }
     h2 {
         padding-bottom: 13px;
     }
 }
 .filter-size-item {
     padding: 5px 10px;
-    border: 1px solid rgb(112, 197, 115);
+    border: 1px solid #a37c648a;
     border-radius: 15px;
     display: flex;
     justify-content: center;
     flex: 1 1 100%;
     cursor: pointer;
+    color: rgb(104, 104, 104);
     transition: all 0.3s ease 0s;
+    @media (any-hover: hover){
+        &:hover{
+            background: rgba(244, 255, 250, 0.484);
+            border-color: #54806e;
+            color: rgba(0, 0, 0, 0.881);
+            // color: #a37c64;
+        }
+    }
     &.active {
         // border: 2px solid #009471;
-        background: rgb(234, 254, 255);
+        color: #000;
+        border: 1px solid #b07957;
+        background: #f7f7f77d;
     }
 }
 .filter-type-item {
@@ -154,4 +182,18 @@ hr {
     width: 200px;
     background: rgba(165, 122, 57, 0.631);
     padding: 1px;
+}
+.arrow-up {
+    cursor: pointer;
+    height: 47px;
+    width: 47px;
+    background: rgb(209, 251, 173);
+    // background: rgb(42, 73, 64);
+    position: fixed;
+    left: 45px;
+    bottom: 30px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

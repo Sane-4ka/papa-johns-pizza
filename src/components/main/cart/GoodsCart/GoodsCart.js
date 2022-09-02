@@ -1,7 +1,6 @@
 import React from 'react'
-import { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
-import CartItem from './CartItem/CartItem'
+import CartItem from '../CartItem/CartItem'
 
 import './goodsCart.scss'
 
@@ -20,12 +19,10 @@ const GoodsCart = ({dispatch}) => {
         } else {
             const itemsData = Object.values(productData)
             const items = itemsData.map((item, i)=> {
-                return (
-                    <CartItem dispatch={dispatch} key={`${item}_${i}`} itemData={item}/>
-                )
+                return <CartItem dispatch={dispatch} key={`${item}_${i}`} itemData={item}/>
             })
             return (
-                <ul className="cart-items">
+                <ul className="cart-items"> 
                     {items}
                     <div className="cart-total">
                         <div className="total-price">Total price: {totalPrice}</div>

@@ -15,6 +15,10 @@
     padding: 10px;
     margin-top: 125px;
     box-shadow: 5px 5px 5px 0px rgba(34, 60, 80, 0.2);
+    @media (max-width: 1170px) {
+        display: none;
+    }
+    
     &::-webkit-scrollbar {
         display: none;
     }
