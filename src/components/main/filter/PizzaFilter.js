@@ -2,11 +2,11 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import {BsFilterCircle} from 'react-icons/bs'
 import './pizzaFilter.scss'
-
-import { activePizzaFilterChanged } from '../../../redux/actions'
+import { useEffect } from 'react'
+import {activePizzaFilterChanged} from '../../../redux/slice/filterSlice'
 
 const PizzaFilter = () => {
-    const {activePizzaFilter} = useSelector(state => state.pizzaFilters)
+    // const {activePizzaFilter} = useSelector(state => state.pizzaFilters)
     const dispatch = useDispatch();
 
     const filterData = [
@@ -19,6 +19,10 @@ const PizzaFilter = () => {
         {name: 'Spicy', code: 'spice'}, 
         {name: 'BBQ Sauce', code: 'bbq_sauce'}, 
     ]
+
+    useEffect(() => {
+        dispatch(activePizzaFilterChanged('all'))
+    }, []);
 
     const removeActive = (elem) => {
         elem.forEach(btn => {

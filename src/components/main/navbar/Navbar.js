@@ -10,9 +10,7 @@ import combo from '../../../assets/img/delivery.png'
 
 import './navbar.scss'
 
-const Navbar = () => {
-    const [active, setActive] = useState('Pizza')
-    const data = [
+const data = [
         {
             name: 'Pizza',
             imgSrc: pizza,
@@ -49,6 +47,9 @@ const Navbar = () => {
             id: 'Комбо'
         },
     ]
+
+const Navbar = () => {
+    const [active, setActive] = useState('Pizza')
 
     const handleActive = (item) => {
         setActive(item.name)

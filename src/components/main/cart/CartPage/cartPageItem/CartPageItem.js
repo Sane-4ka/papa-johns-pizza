@@ -1,12 +1,13 @@
 import React from 'react'
 
-import { deleteItemFromCard } from '../../../../../redux/actions'
+// import { deleteItemFromCard } from '../../../../../redux/actions'
 import styles from './CartPageItem.module.scss'
+
+import { deleteItemFromCard, removeOne, addOneMore } from '../../../../../redux/slice/cartSlice'
 
 const CartPageItem = ({dispatch, itemData}) => {
     // img
     // https://api.papajohns.by//images/catalog/thumbs/cart/
-    console.log(itemData)
     const {price, dough, diameter, image_list, id} = itemData.variation
     // const {productData} = useSelector(state => state.cart)
 
@@ -25,9 +26,9 @@ const CartPageItem = ({dispatch, itemData}) => {
         </div>
         <div className={styles.count}>
             {/* <div className="count-text">Count</div> */}
-            <div className={styles.count_btn}><span>+</span></div>
+            <button className={styles.count_btn} disabled={itemData.count === 1} onClick={() => dispatch(removeOne(id))}><span>-</span></button>
             <div className="cart-count">{itemData.count}</div>
-            <div className={styles.count_btn}><span>-</span></div>
+            <button className={styles.count_btn} onClick={() => dispatch(addOneMore(id))}><span>+</span></button>
         </div>
         <div className={styles.subtitle}>{price}<span> BYN</span></div>
         <div className={styles.delete_btn} onClick={() => dispatch(deleteItemFromCard(id))}></div>

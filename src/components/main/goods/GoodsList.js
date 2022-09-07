@@ -26,8 +26,8 @@ const GoodsList = ({dispatch}) => {
             }    
             return goodsArr.map((item, i) => {
                 return (
-                    <div className='goods-block' key={`${item.name}_${i}`}>
-                        <h2 id={item.name}>{item.name}</h2>
+                    <div className='goods-block' id={item.name} key={`${item.name}_${i}`}>
+                        <h2>{item.name}</h2>
                         <div className="goods-container">
                         {
                             item.data.map(product => {

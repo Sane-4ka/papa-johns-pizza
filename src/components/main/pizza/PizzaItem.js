@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
-import { useMemo } from 'react';
 // import {BsPlus} from 'react-icons/bs'
-import { addItemToCard } from '../../../redux/actions';
+// import { addItemToCard } from '../../../redux/actions';
+import { addItemToCard } from '../../../redux/slice/cartSlice';
 
 const PizzaItem = ({dispatch, itemData}) => {
     const [size, setSize] = useState([]);
@@ -10,7 +10,8 @@ const PizzaItem = ({dispatch, itemData}) => {
     const [currentId, setCurrentId] = useState(0)
         // arr with variation ids
     const [variationIds, setVariationIds] = useState([])
-    const {name, description, variations, id} = useMemo(() => itemData, [itemData])
+    const {name, description, variations} = itemData
+    const iDid = itemData.id
 
     useEffect(() => {
         setType()
@@ -42,16 +43,19 @@ const PizzaItem = ({dispatch, itemData}) => {
     }
 
     const onAddToCart = (currentVariation) => {
-        console.log({currentVariation, id})
-        dispatch(addItemToCard({currentVariation, id, name}))
+        console.log({currentVariation, iDid})
+        const {id , price, image_list, diameter, dough} = currentVariation
+        dispatch(addItemToCard({id, price, image_list, diameter, dough, name, iDid}))
     }
 
     const makeContent = () => {
         let varId = variations[variationIds[currentId]]
-        return (
+        return varId?.kind.id?
+        // console.log(!!varId?.kind.id)
+         (
         <div className="pizza-block">
             <div className="pizza-block-img">
-                <img src={varId? varId.image_list : null} alt="" className="pizza-image" />
+                <img src={varId?.image_list} alt="" className="pizza-image" />
             </div>
             <hr/>
             <h3 className="pizza-title">{name}</h3>
@@ -83,7 +87,7 @@ const PizzaItem = ({dispatch, itemData}) => {
                 <span className="pizza-footer-price">{varId? varId.price : null} BYN</span>
             </div>
         </div>
-        )
+        ) : null
     }
 
     const elements = makeContent()

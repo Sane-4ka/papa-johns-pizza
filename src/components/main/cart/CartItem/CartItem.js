@@ -1,9 +1,8 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import { deleteItemFromCard } from '../../../../redux/actions'
+import { deleteItemFromCard, addOneMore, removeOne } from '../../../../redux/slice/cartSlice'
 
 const CartItem = ({itemData, dispatch}) => {
-    console.log(itemData)
     const {price, dough, diameter, image_list, id} = itemData.variation
     // const {productData} = useSelector(state => state.cart)
 
@@ -19,14 +18,14 @@ const CartItem = ({itemData, dispatch}) => {
                 : diameter ? 
                 <div className="cart-item-subtitle">{`${diameter}`}</div> : null}
                 
-                <div className="cart-item-subtitle">{`Price: ${price}`}</div>
+                <div className="cart-item-subtitle price">{`Price: ${price}`}</div>
             </div>    
         </div>
         <div className="cart-item-count count">
             <div className="count-text">Count</div>
-            <div className="count-add count-btn">+</div>
+            <button className="count-add count-btn" onClick={() => dispatch(addOneMore(id))} >+</button>
             <div className="cart-count">{itemData.count}</div>
-            <div className="count-remove count-btn">-</div>
+            <button className="count-remove count-btn" disabled={itemData.count === 1} onClick={() => dispatch(removeOne(id))} >-</button>
         </div>
     </li>
   )

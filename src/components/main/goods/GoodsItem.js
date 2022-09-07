@@ -1,8 +1,11 @@
 import React from 'react'
-import { addItemToCard } from '../../../redux/actions'
+// import { addItemToCard } from '../../../redux/actions'
+import {addItemToCard} from '../../../redux/slice/cartSlice'
 
 const GoodsItem = ({itemData, dispatch}) => {
-    const {name, description, variations, id} = itemData
+    const {name, description, variations} = itemData
+    const iDid = itemData.id
+    const {id, price, image_list, diameter, dough} = variations[0]
    return (
     <div className="pizza-block">
         <img src={variations[0].image_list} alt="" className="pizza-image" />
@@ -10,7 +13,7 @@ const GoodsItem = ({itemData, dispatch}) => {
         <h3 className="pizza-title">{name}</h3>
         <div className="pizza-description">{description}</div>
         <div className="pizza-footer">
-            <button className="pizza-footer-btn" onClick={() => dispatch(addItemToCard({currentVariation: variations[0], id, name}))}>Add to basket</button>
+            <button className="pizza-footer-btn" onClick={() => dispatch(addItemToCard({id, price, image_list, diameter, dough, iDid, name}))}>Add to basket</button>
             <span className="pizza-footer-price">{variations[0].price} BYN</span>
         </div>
     </div>

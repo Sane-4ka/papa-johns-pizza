@@ -2,8 +2,7 @@ import React, {useEffect} from 'react'
 
 import { useHttp } from '../../hooks/useHttp'
 import { useDispatch } from 'react-redux'
-import { goodsFetching, goodsFetchingError, goodsFetched } from '../../redux/actions'
-
+import { goodsFetching, goodsFetchingError, goodsFetched } from '../../redux/slice/goodsSlice'
 import {TbArrowBigTop} from 'react-icons/tb'
 
 import Slider from './Slider/Slider';
@@ -24,7 +23,7 @@ const Main = () => {
 
     useEffect(() => {
         dispatch(goodsFetching())
-        request('https://api.papajohns.by/catalog/goods?lang=ru&city_id=1')
+        request('https://api.papajohns.ru/catalog/goods?lang=ru&city_id=1')
             .then(data => dispatch(goodsFetched(data)))
             .then(console.log(`fetched`))
             .catch(e => dispatch(goodsFetchingError(e)))

@@ -18,7 +18,8 @@ const cart = (state = initialState, action) => {
                 }
             }
         case 'ADD_ITEM_TO_CARD':
-            const {id , price, image_list, diameter, dough} = action.payload.currentVariation
+            // const {id , price, image_list, diameter, dough} = action.payload.currentVariation
+            const {id , price, image_list, diameter, dough} = action.payload
             const varById = state.productData[id]
             console.log(+state.totalPrice, +price)
             return {

@@ -11,33 +11,32 @@ const PizzaList = ({dispatch}) => {
     const {activePizzaFilter} = useSelector(state => state.pizzaFilters)
     
     const filterIt = () => {
-        console.log(`filtered`, activePizzaFilter)
+        // console.log(`filtered`, activePizzaFilter)
         activePizzaFilter !== 'all' ?
-        setFilteredGoods(goods[0].goods.filter((item, i) => {
+        setFilteredGoods(goods[0]?.goods.filter((item, i) => {
             return item.types.some(type => {
                 return type.code === activePizzaFilter
             })
-        })) : setFilteredGoods(goods[0].goods)
+        })) : setFilteredGoods(goods[0]?.goods)
     }
 
     useEffect(() => {
-        goods.length !== 0 ? filterIt() : console.log(`Waiting for the loading the goods`)
+        goods.length !== 0 && goodsLoadingStatus === 'idle' && filterIt()
     }, [goods, activePizzaFilter]);
 
+
     if (goodsLoadingStatus === 'loading') {
-        return (
-            <div className="pizza">
-                <PizzaSkeleton/>
-                <PizzaSkeleton/>
-                <PizzaSkeleton/>
-                <PizzaSkeleton/>
-                <PizzaSkeleton/>
-                <PizzaSkeleton/>
-                <PizzaSkeleton/>
-                <PizzaSkeleton/>
-                <PizzaSkeleton/>
-            </div>
-            )
+        return (<div className="pizza">
+            <PizzaSkeleton/>
+            <PizzaSkeleton/>
+            <PizzaSkeleton/>
+            <PizzaSkeleton/>
+            <PizzaSkeleton/>
+            <PizzaSkeleton/>
+            <PizzaSkeleton/>
+            <PizzaSkeleton/>
+            <PizzaSkeleton/>
+        </div>)
     } else if (goodsLoadingStatus === 'error') {
         return (
             <>

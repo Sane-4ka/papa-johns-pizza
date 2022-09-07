@@ -21,10 +21,10 @@ const Header = () => {
         <div className="header-nav">
             <div className="nav-left">
                 <Logo/>
-                <div className="nav-left-region">
+                {/* <div className="nav-left-region">
                     <span>Minsk</span>
                     <GoTriangleDown style={{padding: '4px 0 0 0', margin: '0 0 0 4px'}}/>
-                </div>
+                </div> */}
             </div>
             <div className="nav-right">
                 <div className="nav">
