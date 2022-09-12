@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/papa-johns-pizza/static/css/main.45318edf.css",
-    "main.js": "/papa-johns-pizza/static/js/main.205656f4.js",
+    "main.css": "/papa-johns-pizza/static/css/main.38ef4445.css",
+    "main.js": "/papa-johns-pizza/static/js/main.64167a4e.js",
     "static/media/hot-soup.png": "/papa-johns-pizza/static/media/hot-soup.dacdb98e3b7145adfe64.png",
     "static/media/drink.png": "/papa-johns-pizza/static/media/drink.dda83ac053fb12b7a98f.png",
     "static/media/snack.png": "/papa-johns-pizza/static/media/snack.08dc5f5c2024b296b8fb.png",
@@ -10,11 +10,11 @@
     "static/media/delivery.png": "/papa-johns-pizza/static/media/delivery.b5f349ee0e8e1451e737.png",
     "static/media/pizza.svg": "/papa-johns-pizza/static/media/pizza.87fb2a538c8e180d38eea46495cc80c9.svg",
     "index.html": "/papa-johns-pizza/index.html",
-    "main.45318edf.css.map": "/papa-johns-pizza/static/css/main.45318edf.css.map",
-    "main.205656f4.js.map": "/papa-johns-pizza/static/js/main.205656f4.js.map"
+    "main.38ef4445.css.map": "/papa-johns-pizza/static/css/main.38ef4445.css.map",
+    "main.64167a4e.js.map": "/papa-johns-pizza/static/js/main.64167a4e.js.map"
   },
   "entrypoints": [
-    "static/css/main.45318edf.css",
-    "static/js/main.205656f4.js"
+    "static/css/main.38ef4445.css",
+    "static/js/main.64167a4e.js"
   ]
 }
