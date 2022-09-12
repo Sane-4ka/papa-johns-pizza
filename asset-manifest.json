@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/papa-johns-pizza/static/css/main.45318edf.css",
+    "main.js": "/papa-johns-pizza/static/js/main.205656f4.js",
+    "static/media/hot-soup.png": "/papa-johns-pizza/static/media/hot-soup.dacdb98e3b7145adfe64.png",
+    "static/media/drink.png": "/papa-johns-pizza/static/media/drink.dda83ac053fb12b7a98f.png",
+    "static/media/snack.png": "/papa-johns-pizza/static/media/snack.08dc5f5c2024b296b8fb.png",
+    "static/media/sauces.png": "/papa-johns-pizza/static/media/sauces.19c2de33c38084188f4b.png",
+    "static/media/sweets.png": "/papa-johns-pizza/static/media/sweets.76c9d4812de0e98daa4f.png",
+    "static/media/delivery.png": "/papa-johns-pizza/static/media/delivery.b5f349ee0e8e1451e737.png",
+    "static/media/pizza.svg": "/papa-johns-pizza/static/media/pizza.87fb2a538c8e180d38eea46495cc80c9.svg",
+    "index.html": "/papa-johns-pizza/index.html",
+    "main.45318edf.css.map": "/papa-johns-pizza/static/css/main.45318edf.css.map",
+    "main.205656f4.js.map": "/papa-johns-pizza/static/js/main.205656f4.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.45318edf.css",
+    "static/js/main.205656f4.js"
+  ]
+}
