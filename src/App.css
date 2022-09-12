@@ -83,3 +83,22 @@ body {
     align-items:center;
     flex-direction: column;
 }
+
+body::-webkit-scrollbar {
+    width: 10px;               /* width of the entire scrollbar */
+  }
+  
+  body::-webkit-scrollbar-track {
+    background: rgb(211, 211, 211);        /* color of the tracking area */
+  }
+  
+  body::-webkit-scrollbar-thumb {
+    background-color: rgb(141, 206, 136);    /* color of the scroll thumb */
+    border-radius: 20px;       /* roundness of the scroll thumb */
+    border: 1px solid rgb(94, 174, 106);  /* creates padding around scroll thumb */
+  }
+  
+
+  body {
+    cursor: url(https://cdn.custom-cursor.com/db/11776/32/vsco-pizza-cursor.png) , default!important;
+  }
