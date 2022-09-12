@@ -7,10 +7,12 @@
     &-block-buttons {
         display: flex;
         gap: 10px;
+        flex-wrap: wrap;
     }
     &-block-button {
         position: relative;
         display: flex;
+        flex-wrap: wrap;
         justify-content: center;
         align-items: center;
         height: 36px;
@@ -34,9 +36,14 @@
                 border: 1.4px solid #b1b1b1;
             }
         }
+        @media (max-width: 777px){
+            flex-wrap: wrap;
+        }
     }
     &-block-icon {
-
+        @media (max-width: 777px){
+            display: none;
+        }
     }
     &-icon {
         color:rgb(156, 121, 100);
