@@ -7,56 +7,37 @@ import PizzaItem from './PizzaItem'
 
 const PizzaList = ({dispatch}) => {
     const [filteredGoods, setFilteredGoods] = useState([]);
-    const {goods, goodsLoadingStatus} = useSelector(state => state.goods)
+    const {goods, goodsLoadingStatus, status} = useSelector(state => state.goods)
     const {activePizzaFilter} = useSelector(state => state.pizzaFilters)
     
     const filterIt = () => {
-        // console.log(`filtered`, activePizzaFilter)
         activePizzaFilter !== 'all' ?
         setFilteredGoods(goods[0]?.goods.filter((item, i) => {
-            return item.types.some(type => {
-                return type.code === activePizzaFilter
-            })
+            return item.types.some(type => type.code === activePizzaFilter)
         })) : setFilteredGoods(goods[0]?.goods)
     }
 
     useEffect(() => {
-        goods.length !== 0 && goodsLoadingStatus === 'idle' && filterIt()
+        goods.length !== 0 && status === 'success' && filterIt()
+        // goods.length !== 0 && goodsLoadingStatus === 'idle' && filterIt()
     }, [goods, activePizzaFilter]);
 
+    const skeletons = [...new Array(9)].map((_, index) => <PizzaSkeleton key={index} />)
+    
+    function renderItem(data = goods) {
+        return data.map((item, i) => <PizzaItem dispatch={dispatch} itemData={item} key={`${item.name}_X`} /> )
+    } 
+    
 
-    if (goodsLoadingStatus === 'loading') {
-        return (<div className="pizza">
-            <PizzaSkeleton/>
-            <PizzaSkeleton/>
-            <PizzaSkeleton/>
-            <PizzaSkeleton/>
-            <PizzaSkeleton/>
-            <PizzaSkeleton/>
-            <PizzaSkeleton/>
-            <PizzaSkeleton/>
-            <PizzaSkeleton/>
-        </div>)
-    } else if (goodsLoadingStatus === 'error') {
+    if (status === 'error') {
         return (
-            <>
-                <h2>Smth went wrong</h2>
-                <button onClick={() => filterIt()}>reload</button>
-            </>
+            <h2>Smth went wrong</h2>
         )
     }
 
-    function renderItem(data = goods) {
-        return data.map((item, i) => {
-            return <PizzaItem dispatch={dispatch} itemData={item} key={`${item.name}_X`}/>
-        })
-    } 
-
-    const elements = renderItem(filteredGoods) ;
-
     return (
         <div className="pizza">
-            {elements}
+            {status === 'success'? renderItem(filteredGoods): skeletons}
         </div>
     )
 }

@@ -20,7 +20,7 @@ const PizzaItem = ({dispatch, itemData}) => {
     const setType = (value = currentType) => {
         
         setCurrentType(value)
-        onChangeSizeId()
+        setCurrentId(currentId)
         setSize([])
         setVariationIds([])
         setCurrentId(0)
@@ -31,9 +31,6 @@ const PizzaItem = ({dispatch, itemData}) => {
             }
         })
     }
-    const onChangeSizeId = (i = currentId) => {
-        setCurrentId(i)
-    }
 
     const renderSizes = () => {
         return (size.map((size, i) => {
@@ -43,16 +40,15 @@ const PizzaItem = ({dispatch, itemData}) => {
     }
 
     const onAddToCart = (currentVariation) => {
-        console.log({currentVariation, iDid})
+        // console.log({currentVariation, iDid})
         const {id , price, image_list, diameter, dough} = currentVariation
         dispatch(addItemToCard({id, price, image_list, diameter, dough, name, iDid}))
     }
 
     const makeContent = () => {
         let varId = variations[variationIds[currentId]]
-        return varId?.kind.id?
-        // console.log(!!varId?.kind.id)
-         (
+        // return !!varId?.kind.id && (
+        return (
         <div className="pizza-block">
             <div className="pizza-block-img">
                 <img src={varId?.image_list} alt="" className="pizza-image" />
@@ -87,7 +83,7 @@ const PizzaItem = ({dispatch, itemData}) => {
                 <span className="pizza-footer-price">{varId? varId.price : null} BYN</span>
             </div>
         </div>
-        ) : null
+        )
     }
 
     const elements = makeContent()

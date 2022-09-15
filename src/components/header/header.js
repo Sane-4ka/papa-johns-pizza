@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import {Link} from 'react-router-dom'
 
-import {GoTriangleDown} from 'react-icons/go'
 import {CgMenuRight} from 'react-icons/cg'
 import'./header.scss'
  
@@ -17,7 +16,7 @@ const Logo = () => {
 }
 const Nav = () => {
     return (
-        <div className="nav">
+        <div className="nav" >
             <ul className="nav-list">
                 <li className="nav-item">
                     <Link to="/" className='nav-link'>Home</Link>
@@ -38,7 +37,7 @@ const Nav = () => {
         </div>  
     )
 }
-const NavRight = () => {
+const HeaderRight = () => {
     return (
         <div className="nav-right">
             <Nav/>
@@ -51,17 +50,41 @@ const NavRight = () => {
 }
 
 const Header = () => {
-    const [width, setWidth] = useState(window.innerWidth);
     const [visible, setVisible] = useState(false);
+    const [width, setWidth] = useState(window.innerWidth);
+    const navRef = React.useRef();
 
+    useEffect(() => {
+        const isInclude = (e) => {
+            if (!e.path.includes(navRef.current)) {
+                setVisible(false)
+            }
+        }
+        document.body.addEventListener('click', (e) => {isInclude(e)})
+        window.addEventListener('resize', () => setWidth(window.innerWidth))
+
+        return () => {
+            document.body.removeEventListener('click', (e) => {isInclude(e)})
+            window.removeEventListener('resize', () => setWidth(window.innerWidth))
+        }
+    }, []);
+
+    const renderHeaderRightSmall = () => {
+        return (
+            <div className="header-menu-btn" ref={navRef}>
+                <CgMenuRight size={30} onClick={() => setVisible(true)}/>
+                {visible && <Nav/>}
+            </div>
+        )
+    }
+    
   return (
     <header className='header'>
         <div className="header-nav">
             <div className="nav-left">
                 <Logo/>
             </div>
-            {width < 900 ? <CgMenuRight size={30} onClick={() => setVisible(visible => !visible)}/> : <NavRight/>}
-            {visible && <Nav />}
+            {width < 900 ? renderHeaderRightSmall() : <HeaderRight/>}
         </div>
     </header>
   )

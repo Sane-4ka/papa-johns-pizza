@@ -14,7 +14,6 @@ import './App.css';
 import CartPage from './components/main/cart/CartPage/CartPage';
 
 function App() {
-
   return (
     <div className="App">
         <div className="app-container">

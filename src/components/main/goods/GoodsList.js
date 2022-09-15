@@ -5,10 +5,10 @@ import {useSelector } from 'react-redux'
 import GoodsItem from './GoodsItem'
 
 const GoodsList = ({dispatch}) => {
-    const {goods} = useSelector(state => state.goods)
+    const goods = useSelector(state => state.goods.goods)
 
     useEffect(() => {
-        goods.length > 0 ? renderItem() : console.log(`Waiting for the loading the goods`)
+        goods.length > 0 && renderItem()
     }, [goods]);
     
     function renderItem(data = goods) {

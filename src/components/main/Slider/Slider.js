@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import { useHttp } from "../../../hooks/useHttp";
@@ -8,7 +8,7 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 
 import './slider.scss'
-import SliderSkeleton from "../../Skeleton/SliderSkeleton";
+// import SliderSkeleton from "../../Skeleton/SliderSkeleton";
 import { Autoplay, Navigation } from "swiper";
 
 export default function App() {
@@ -17,10 +17,13 @@ export default function App() {
     const {request} = useHttp();
 
     useEffect(() => {
-        request('https://api.papajohns.ru/slider/list?lang=ru&city_id=1')
-            .then(data => setBannersData(data))
-            .then(setIsLoaded(true))
-            .catch(e => console.log(`error ${e}`))
+        const fetchSlides = () => {
+            request('https://api.papajohns.ru/slider/list?lang=ru&city_id=1')
+                 .then(data => setBannersData(data))
+                 .then(setIsLoaded(true))
+                 .catch(e => console.log(`error ${e}`)) 
+        }
+        bannersData.length === 0 && fetchSlides()
     }, []);
 
     const renderBanners = () => {
@@ -45,7 +48,6 @@ export default function App() {
     }
 
     if (!isLoaded || bannersData.length === 0) {
-        // console.log('render')
         return (
             // <SliderSkeleton/>
             <div className="svg_skeleton">

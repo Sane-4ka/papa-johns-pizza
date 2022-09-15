@@ -201,11 +201,11 @@ hr {
     cursor: pointer;
     height: 47px;
     width: 47px;
-    background: rgb(209, 251, 173);
     // background: rgb(42, 73, 64);
     position: fixed;
-    left: 45px;
-    bottom: 30px;
+    border: 1px solid black;
+    left: 25px;
+    bottom: 25px;
     border-radius: 50%;
     display: flex;
     justify-content: center;

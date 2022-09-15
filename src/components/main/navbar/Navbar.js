@@ -49,16 +49,16 @@ const data = [
     ]
 
 const Navbar = () => {
-    const [active, setActive] = useState('Pizza')
+    // const [active, setActive] = useState('Pizza')
 
     const handleActive = (item) => {
-        setActive(item.name)
+        // setActive(item.name)
         document.getElementById(item.id).scrollIntoView({block: "center", behavior: "smooth"})
     }
 
     const elements = data.map((item, i) => {
         return (
-            <div key={`${item.name}-${i}`} onClick={() => handleActive(item)} className={item.name === active? 'navbar_menu-link active' : 'navbar_menu-link'}>
+            <div key={`${item.name}-${i}`} onClick={() => handleActive(item)} className={'navbar_menu-link'}>
                 <img src={item.imgSrc} alt="" />
                 <span>{item.name}</span>
             </div>
