@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux'
 import PizzaSkeleton from '../../Skeleton/PizzaSkeleton'
 import PizzaItem from './PizzaItem'
 
-const PizzaList = ({dispatch}) => {
+const PizzaList: React.FC = ({dispatch}) => {
     const [filteredGoods, setFilteredGoods] = useState([]);
     const {goods, goodsLoadingStatus, status} = useSelector(state => state.goods)
     const {activePizzaFilter} = useSelector(state => state.pizzaFilters)
