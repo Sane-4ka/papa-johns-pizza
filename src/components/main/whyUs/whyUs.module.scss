@@ -1,0 +1,32 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items:center;
+}
+.title {
+    font-weight: 700;
+    font-size: 25px;
+    padding: 20px 0;
+}
+.block {
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    flex-direction: row;
+    gap: 10px;
+}
+.item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.title1 {
+    text-align: center;
+    padding: 15px;
+    font-weight: 800;
+}
+.txt1 {
+    text-align: center;
+}

@@ -1,55 +1,41 @@
-import React from 'react'
-import { useEffect} from 'react'
-import {useSelector } from 'react-redux'
+import React from "react";
+import { useSelector } from "react-redux";
 
-import GoodsItem from './GoodsItem'
+import GoodsItem from "./GoodsItem";
 
-const GoodsList = ({dispatch}) => {
-    const goods = useSelector(state => state.goods.goods)
+const GoodsList = () => {
+  const goods = useSelector((state) => state.goods.goods);
 
-    useEffect(() => {
-        goods.length > 0 && renderItem()
-    }, [goods]);
-    
-    function renderItem(data = goods) {
-        if (goods.length > 0) {
+  console.log("sdfgsdfghsd");
+  function renderItem(data = goods) {
+    const goodsArr = [];
+    for (let i = 1; i < data.length; i++) {
+      // data - all variations of food
+      //      like: pizza, hot, drinks and others
+      goodsArr.push({ name: data[i]?.name });
+      // items/goodsArr[i - 1] - all goods of current type of productSubsection/variation
 
-            const goodsArr = [];
-            for (let k = 1; k < 7; k++) {
-                goodsArr.push({name : data[k].name})
-                const items = data[k].goods.map((item, i) => {
-                    
-                    return <GoodsItem dispatch={dispatch} itemData={item} key={`${item.name}_X`}/>
-                })
-                goodsArr[k - 1].data = (items)
-                // console.log(goodsArr[k - 1])
-            }    
-            return goodsArr.map((item, i) => {
-                return (
-                    <div className='goods-block' id={item.name} key={`${item.name}_${i}`}>
-                        <h2>{item.name}</h2>
-                        <div className="goods-container">
-                        {
-                            item.data.map(product => {
-                                return product
-                            })
-                        }
-                        </div>
-                    </div>
-                )
-            })
-        } else {
-            return
-        }
-    } 
-    
-    const elements = renderItem(goods) ;
-
-    return (
-        <div className="goods">
-            {elements}
+      goodsArr[i - 1].data = data[i]?.goods.map((item, i) => (
+        <GoodsItem itemData={item} key={`${item.name}_X`} />
+      ));
+      //   goodsArr[i - 1].data = items;
+    }
+    // goodsArr - data contents all variations of food
+    //    obj  like: {name, data: react faragm types}
+    return goodsArr.map((item, i) => (
+      <div className="goods-block" id={item.name} key={`${item.name}_${i}`}>
+        <h2>{item.name}</h2>
+        <div className="goods-container">
+          {item.data.map((product) => product)}
         </div>
-    )
-}
+      </div>
+    ));
+  }
+  return (
+    <div className="goods">
+      {goods ? goods.length !== 0 && renderItem(goods) : null}
+    </div>
+  );
+};
 
 export default GoodsList;
