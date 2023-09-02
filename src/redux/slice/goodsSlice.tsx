@@ -1,17 +1,24 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit'
 import axios from 'axios'
 
 export const fetchGoodsByUrl = createAsyncThunk(
     'goods/fetchGoodsStatus',
-    async (url, thunkAPI) => {
+    async (url: string) => {
     //   const response = await userAPI.fetchById(userId)
     //   return response.data
     const { data } = await axios.get(url)
     // thunkAPI.dispatch(goodsFetched(data))
     return data;
-    })
+})
 
-const initialState = {
+interface goodState {
+   goods: any,
+   errorMsg: string,
+   goodsLoadingStatus: string,
+   status: string
+}
+
+const initialState: goodState = {
     goods: [],
     errorMsg: '',
     goodsLoadingStatus: 'idle',
@@ -25,27 +32,27 @@ export const goodsSlice = createSlice({
     goodsFetching: (state) => {
         state.goodsLoadingStatus = 'loading'
     },
-    goodsFetched: (state, action) => {
+    goodsFetched: (state, action: PayloadAction<[]>) => {
         state.goods = action?.payload;
         state.goodsLoadingStatus = 'idle'
     },
-    goodsFetchingError: (state, action) => {
+    goodsFetchingError: (state) => {
         state.errorMsg = "error fetching response";
         state.goodsLoadingStatus = 'error'
     },
   },
-  extraReducers: {
-    [fetchGoodsByUrl.pending]: (state) => {
-        state.status = 'loading'
-    },
-    [fetchGoodsByUrl.fulfilled]: (state, action) => {
-        state.status = 'success'
-    },
-    [fetchGoodsByUrl.rejected]: (state) => {
-        state.status = 'error'
-    },
-  }
-  })
+  extraReducers: (builder) =>{
+   builder.addCase(fetchGoodsByUrl.pending,(state) => {
+      state.status = 'loading'
+   }),
+   builder.addCase(fetchGoodsByUrl.fulfilled,(state) => {
+      state.status = 'success'
+   }),
+   builder.addCase(fetchGoodsByUrl.rejected,(state) => {
+      state.status = 'error'
+   }),
+   },
+});   
 
 export const { goodsFetching, goodsFetchingError, goodsFetched } = goodsSlice.actions;
 

@@ -1,32 +1,31 @@
 import React, {useEffect, Suspense} from 'react'
-
-import { useDispatch } from 'react-redux'
+import { useAppDispatch } from '../../hooks';
 import {TbArrowBigTop} from 'react-icons/tb'
 
 import Slider from './Slider/Slider';
 import SmallCart from './cart/SmallCart/SmallCart';
-// import PizzaList from './pizza/PizzaList'
 import GoodsCart from './cart/GoodsCart/GoodsCart'
-// import GoodsList from './goods/GoodsList'
 import PizzaFilter from './filter/PizzaFilter'
 import Navbar from './navbar/Navbar'
 import './main.scss'
+
 import { useState } from 'react';
 
-import {useSelector} from 'react-redux'
 import { fetchGoodsByUrl, goodsFetched } from '../../redux/slice/goodsSlice'
-// const PizzaFilter = React.lazy(() => import('./filter/PizzaFilter'));
+import { useAppSelector } from '../../hooks';
+
 const PizzaList = React.lazy(() => import("./pizza/PizzaList"));
 const GoodsList = React.lazy(() => import("./goods/GoodsList"));
+const URL = 'https://api.papajohns.ru/catalog/goods?lang=ru&city_id=1';
 
-const Main = () => {
+const Main: React.FC = () => {
     const [winWidth, setWinWidth] = useState(window.innerWidth);
-    const dispatch = useDispatch();
-    const goods = useSelector(state => state.goods.goods)
+    const dispatch = useAppDispatch();
+    const goods = useAppSelector(state => state.goods.goods)
 
     useEffect(() => {
         if (goods.length === 0) {
-            dispatch(fetchGoodsByUrl('https://api.papajohns.ru/catalog/goods?lang=ru&city_id=1'))
+            dispatch(fetchGoodsByUrl(URL))
             .then(data => dispatch(goodsFetched(data.payload)))
         }
         window.addEventListener('resize', () => setWinWidth(window.screen.width))
@@ -34,12 +33,13 @@ const Main = () => {
             window.removeEventListener('resize', () => setWinWidth(window.screen.width))
         }
     }, []);
-
+    
     const onTop = function() { 
         if (document.body.scrollTop>0 || document.documentElement.scrollTop>0) { 
            window.scrollTo(0, 0)
         } 
      } 
+    
     return (
     <>
     <Slider/>

@@ -1,8 +1,22 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-const initialState = {
-    productData: {},
-    totalPrice: 0,
+interface cartState {
+   productData: {
+      count: number,
+      variation: variationType,
+      productId: number,
+      name: string
+   }[],
+    totalPrice: string,
+    totalCount: number
+}
+export type variationType = {
+   id: number, price: number, image_list: string, diameter: number, dough: string
+}
+
+const initialState: cartState = {
+    productData: [],
+    totalPrice: "0",
     totalCount: 0
 }
 
@@ -10,7 +24,7 @@ export const cartSlice = createSlice({
   name: 'cart',
   initialState,
   reducers: {
-    deleteItemFromCard: (state, action) => {
+    deleteItemFromCard: (state, action: PayloadAction<number>) => {
         const data = {...state.productData}
         delete data[action.payload] 
         state.totalPrice = (+state.totalPrice - +state.productData[action.payload].count * +state.productData[action.payload].variation.price).toFixed(2);
@@ -19,8 +33,8 @@ export const cartSlice = createSlice({
         }
     },
     addItemToCard: (state, action) => {
-        const {id , price, image_list, diameter, dough} = action.payload
-        const varById = state.productData[id]
+        const {id , price, image_list, diameter, dough}: variationType = action.payload
+        const varById= state.productData[id]
         state.totalPrice = (+state.totalPrice + +price).toFixed(2);
             
         state.productData = {
