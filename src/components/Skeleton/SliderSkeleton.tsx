@@ -1,7 +1,7 @@
-import React from "react"
-import ContentLoader from "react-content-loader"
+import ContentLoader, { IContentLoaderProps } from "react-content-loader"
+import { JSX } from "react/jsx-runtime"
 
-const SliderSkeleton = (props) => (
+const SliderSkeleton = (props: JSX.IntrinsicAttributes & IContentLoaderProps) => (
   <ContentLoader 
     speed={1.5}
     width={1200}

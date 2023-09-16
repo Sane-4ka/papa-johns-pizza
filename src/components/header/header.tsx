@@ -52,15 +52,15 @@ const HeaderRight = () => {
 const Header = () => {
     const [visible, setVisible] = useState(false);
     const [width, setWidth] = useState(window.innerWidth);
-    const navRef = React.useRef();
+    const navRef = React.useRef<HTMLDivElement>(null);
 
     useEffect(() => {
-        const isInclude = (e) => {
+        const isInclude = (e:any) => {
             if (!e.path.includes(navRef.current)) {
                 setVisible(false)
             }
         }
-        document.body.addEventListener('click', (e) => {isInclude(e)})
+        document.body.addEventListener('click', (e: MouseEvent) => {isInclude(e)})
         window.addEventListener('resize', () => setWidth(window.innerWidth))
 
         return () => {

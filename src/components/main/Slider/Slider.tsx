@@ -20,7 +20,7 @@ export default function App() {
         const fetchSlides = () => {
             request('https://api.papajohns.ru/slider/list?lang=ru&city_id=1')
                  .then(data => setBannersData(data))
-                 .then(setIsLoaded(true))
+                 .then(setIsLoaded(Boolean(true)))
                  .catch(e => console.log(`error ${e}`)) 
         }
         bannersData.length === 0 && fetchSlides()
@@ -39,7 +39,7 @@ export default function App() {
             grabCursor={true}
             modules={[Autoplay, Navigation]}
             className="mySwiper">
-            {bannersData.map(banner => {
+            {bannersData.map((banner:{title:string, image_full_webp:string}) => {
                 return <SwiperSlide key={banner.title}>
                     <img src={banner.image_full_webp} alt="" />
                 </SwiperSlide>

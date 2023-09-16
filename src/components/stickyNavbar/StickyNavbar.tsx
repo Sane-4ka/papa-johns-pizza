@@ -7,14 +7,13 @@ import { useCallback } from 'react'
 
 const StickyNavbar = () => {
     const [prevScrollPos, setPrevScrollPos] = useState(0);
-    const [visible, setVisible] = useState();
-    const time = useCallback(() => prevScrollPos > 800 || prevScrollPos < 500 ? 100 : 10, [prevScrollPos])
+    const [visible, setVisible] = useState<Boolean>();
+    const time = prevScrollPos > 800 || prevScrollPos < 500 ? 100 : 10
 
     const handleScroll = debounce(() => {
         const currentScrollPos = window.pageYOffset;
         setPrevScrollPos(currentScrollPos);
-        const isVisible = document.querySelector(".navbar_menu")
-            .getBoundingClientRect().top < -150;
+        const isVisible = document.querySelector(".navbar_menu")!.getBoundingClientRect().top < -150;
         if (visible !== isVisible) {
             setVisible(isVisible)
         }
@@ -27,7 +26,7 @@ const StickyNavbar = () => {
     }, []);
 
   return (
-    <CSSTransition in={visible} timeout={300} unmountOnExit classNames="alert">
+    <CSSTransition in={Boolean(visible)} timeout={300} unmountOnExit classNames="alert">
        <div className={styles.root}>
             <ul className={styles.container}>
                 <Link className={styles.link} offset={-150} activeClass="active" smooth={false} spy to="pizza">

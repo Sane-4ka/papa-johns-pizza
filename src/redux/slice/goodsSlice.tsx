@@ -41,18 +41,18 @@ export const goodsSlice = createSlice({
         state.goodsLoadingStatus = 'error'
     },
   },
-  extraReducers: (builder) =>{
-   builder.addCase(fetchGoodsByUrl.pending,(state) => {
-      state.status = 'loading'
-   }),
-   builder.addCase(fetchGoodsByUrl.fulfilled,(state) => {
-      state.status = 'success'
-   }),
-   builder.addCase(fetchGoodsByUrl.rejected,(state) => {
-      state.status = 'error'
-   }),
-   },
-});   
+  extraReducers: {
+    [fetchGoodsByUrl.pending]: (state) => {
+        state.status = 'loading'
+    },
+    [fetchGoodsByUrl.fulfilled]: (state) => {
+        state.status = 'success'
+    },
+    [fetchGoodsByUrl.rejected]: (state) => {
+        state.status = 'error'
+    },
+  }
+  })
 
 export const { goodsFetching, goodsFetchingError, goodsFetched } = goodsSlice.actions;
 
