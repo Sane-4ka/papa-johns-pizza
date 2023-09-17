@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { HtmlHTMLAttributes } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import {BsFilterCircle} from 'react-icons/bs'
 import './pizzaFilter.scss'
@@ -24,13 +24,13 @@ const PizzaFilter = () => {
         dispatch(activePizzaFilterChanged('all'))
     }, []);
 
-    const removeActive = (elem) => {
+    const removeActive = (elem: NodeListOf<Element>) => {
         elem.forEach(btn => {
             btn.classList.remove('active')
         })
     }
 
-    const setActiveFilter = (attr) => {
+    const setActiveFilter = (attr:any) => {
         const btns = document.querySelectorAll('.filter-block-button');
         if (attr.classList.contains('active')) {
             removeActive(btns)

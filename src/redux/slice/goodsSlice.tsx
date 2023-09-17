@@ -42,12 +42,15 @@ export const goodsSlice = createSlice({
     },
   },
   extraReducers: {
+    //@ts-ignore
     [fetchGoodsByUrl.pending]: (state) => {
         state.status = 'loading'
     },
+    //@ts-ignore
     [fetchGoodsByUrl.fulfilled]: (state) => {
         state.status = 'success'
     },
+    //@ts-ignore
     [fetchGoodsByUrl.rejected]: (state) => {
         state.status = 'error'
     },

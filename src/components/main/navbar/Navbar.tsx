@@ -51,9 +51,9 @@ const data = [
 const Navbar = () => {
     // const [active, setActive] = useState('Pizza')
 
-    const handleActive = (item) => {
+    const handleActive = (item: { name?: string; imgSrc?: string; id: string }) => {
         // setActive(item.name)
-        document.getElementById(item.id).scrollIntoView({block: "center", behavior: "smooth"})
+        document.getElementById(item.id)?.scrollIntoView({block: "center", behavior: "smooth"})
     }
 
     const elements = data.map((item, i) => {

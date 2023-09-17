@@ -1,9 +1,8 @@
-import React, {useEffect, useState} from 'react'
+import {useEffect, useState} from 'react'
 import styles from './StickyNavbar.module.scss'
 import debounce from 'lodash.debounce'
 import { Link } from 'react-scroll'
 import { CSSTransition } from 'react-transition-group'
-import { useCallback } from 'react'
 
 const StickyNavbar = () => {
     const [prevScrollPos, setPrevScrollPos] = useState(0);

@@ -1,8 +1,10 @@
 import React from 'react'
 // import { addItemToCard } from '../../../redux/actions'
 import {addItemToCard} from '../../../redux/slice/cartSlice'
+import { pizzaItemProps } from '../pizza/PizzaItem'
 
-const GoodsItem = ({itemData, dispatch}) => {
+
+const GoodsItem = ({itemData, dispatch}:pizzaItemProps) => {
     const {name, description, variations} = itemData
     const iDid = itemData.id
     const {id, price, image_list, diameter, dough} = variations[0]
